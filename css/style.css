@@ -1,0 +1,25 @@
+#meals{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 20px;
+    justify-content: center;
+    align-content: center;
+    margin-left: 100px;
+}
+.food{
+    width: 300px;
+    border-radius: 1em;
+    box-shadow: 5px 5px 10px lightgray;
+    text-align: center;
+    overflow: hidden;
+}
+.food img{
+    width: 100%;
+    padding:2px;
+}
+#showMeal{
+    text-align: center;
+}
+#ingredients li{
+    text-decoration: none;
+}
