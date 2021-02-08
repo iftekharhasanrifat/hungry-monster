@@ -64,14 +64,14 @@ const displayIngredient = meals => {
                     <h2>${meal.strMeal}</h2>
                     <h5>Ingredients</h5>
                     <ul>
-                        <li><i class="fas fa-check-square"></i>${meal.strMeasure1} ${meal.strIngredient1}</li>
-                        <li><i class="fas fa-check-square"></i>${meal.strMeasure2} ${meal.strIngredient2}</li>
-                        <li><i class="fas fa-check-square"></i>${meal.strMeasure3} ${meal.strIngredient3}</li>
-                        <li><i class="fas fa-check-square"></i>${meal.strMeasure4} ${meal.strIngredient4}</li>
-                        <li><i class="fas fa-check-square"></i>${meal.strMeasure5} ${meal.strIngredient5}</li>
-                        <li><i class="fas fa-check-square"></i>${meal.strMeasure6} ${meal.strIngredient6}</li>
-                        <li><i class="fas fa-check-square"></i>${meal.strMeasure7} ${meal.strIngredient7}</li>
-                        <li><i class="fas fa-check-square"></i>${meal.strMeasure8} ${meal.strIngredient8}</li>
+                        <li><i class="fas fa-check-square"></i> ${meal.strMeasure1} ${meal.strIngredient1}</li>
+                        <li><i class="fas fa-check-square"></i> ${meal.strMeasure2} ${meal.strIngredient2}</li>
+                        <li><i class="fas fa-check-square"></i> ${meal.strMeasure3} ${meal.strIngredient3}</li>
+                        <li><i class="fas fa-check-square"></i> ${meal.strMeasure4} ${meal.strIngredient4}</li>
+                        <li><i class="fas fa-check-square"></i> ${meal.strMeasure5} ${meal.strIngredient5}</li>
+                        <li><i class="fas fa-check-square"></i> ${meal.strMeasure6} ${meal.strIngredient6}</li>
+                        <li><i class="fas fa-check-square"></i> ${meal.strMeasure7} ${meal.strIngredient7}</li>
+                        <li><i class="fas fa-check-square"></i> ${meal.strMeasure8} ${meal.strIngredient8}</li>
                     </ul> 
                  </div>
             </div>
