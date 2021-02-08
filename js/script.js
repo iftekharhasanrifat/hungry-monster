@@ -1,86 +1,83 @@
-const searchByMealName = mealName => {
-    fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${mealName}
-    `)
-    .then(res => res.json())
-    .then(data => {
-        const meal = data.meals[0].strMeal;
-        const mealImg = data.meals[0].strMealThumb
-        const mealDiv = document.createElement('div');
-        mealDiv.className = 'food';
+const searchMeal = async () => {
+    const searchText = document.getElementById('search-field').value;
+    const url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${searchText}`;
+    try {
+        const res = await fetch(url);
+        const data = await res.json();
+        displayMeal(data.meals);
+    }
+    catch (error) {
+        displayError("Please search your meal properly.");
+    }
+}
+
+const displayMeal = meals => {
+    const mealContainer = document.getElementById("meal-container");
+    mealContainer.innerHTML = '';
+    const errorMessage = document.getElementById('error-message');
+    errorMessage.innerText = '';
+    const mealInfo = document.getElementById('meal-info');
+    mealInfo.innerHTML = '';
+    meals.forEach(meal => {
+        const mealDiv = document.createElement("div");
         mealDiv.innerHTML = `
-            <img src=${mealImg} class="img-thumbnail">
-            <h3 id = "mealName">${meal}</h3>
+        <div class="card" style="width: 18rem; border-radius: 15px; overflow: hidden; box-shadow: 10px 10px 30px lightgray;">
+            <img src="${meal.strMealThumb}"class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">${meal.strMeal}</h5>
+            </div>
+        </div>
         `;
-        document.getElementById("meals").appendChild(mealDiv);        
-    })
-    .catch(err => {
-        alert("Sorry we couldn't find your meal");
-    })
-}
-const searchByMealCategory = mealCategory => {
-    fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${mealCategory}
-    `)
-    .then(res => res.json())
-    .then(data => {
-        const meals = data.meals;
-        meals.forEach(meal => {
-            const mealName = meal.strMeal;
-            searchByMealName(mealName);
-        });
-    })
-    .catch(err => {
-        searchByMealName(mealCategory);
-    });    
-}
-
-const searchByArea = area => {
-    fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?a=${area}
-    `)
-    .then(res => res.json())
-    .then(data => {
-        const meals = data.meals;
-        meals.forEach(meal => {
-            const mealName = meal.strMeal;
-            searchByMealName(mealName);
-        });
-    })
-    .catch(err => {
-        searchByMealCategory(area);
-    });    
-}
-const showMeal = document.createElement('div');
-showMeal.id = 'showMeal';
-document.getElementById("showArea").appendChild(showMeal);
-document.getElementById('meals').addEventListener('click', function(event){
-    const getName = event.target.innerText;
-    fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${getName}`)
-    .then(res => res.json())
-    .then(data => {
-        const mealMeasure1 = data.meals[0].strMeasure1;
-        const mealMeasure2 = data.meals[0].strMeasure2;
-        const mealMeasure3 = data.meals[0].strMeasure3;
-        const mealMeasure4 = data.meals[0].strMeasure4;
-        const mealMeasure5 = data.meals[0].strMeasure5;
-        const mealIngredient1 = data.meals[0].strIngredient1;
-        const mealIngredient2 = data.meals[0].strIngredient2;
-        const mealIngredient3 = data.meals[0].strIngredient3;
-        const mealIngredient4 = data.meals[0].strIngredient4;
-        const mealIngredient5 = data.meals[0].strIngredient5;
-        showMeal.innerHTML = `
-            <img src = "${data.meals[0].strMealThumb}">
-            <h2>${getName}</h2>
-            <h3>${mealMeasure1} ${mealIngredient1}</h3>
-            <h3>${mealMeasure2} ${mealIngredient2}</h3>
-            <h3>${mealMeasure3} ${mealIngredient3}</h3>
-            <h3>${mealMeasure4} ${mealIngredient4}</h3>
-            <h3>${mealMeasure5} ${mealIngredient5}</h3>
-        `;
+        mealContainer.appendChild(mealDiv);
     });
-});
+}
 
-document.getElementById("search-button").addEventListener('click', function(){
-    const inputRead = document.getElementById("search-meal-input").value;
-    searchByArea(inputRead);
-    console.log(inputRead);
-    
-});
+document.getElementById('meal-container').addEventListener('click', function (event) {
+    const mealName = event.target.innerText;
+    const url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${mealName}`;
+    fetch(url)
+        .then(res => res.json())
+        .then(data => displayIngredient(data.meals))
+        .catch(error => displayError('Please try again later'))
+})
+
+const displayIngredient = meals => {
+    const mealInfo = document.getElementById('meal-info');
+    const errorMessage = document.getElementById('error-message');
+    errorMessage.innerText = '';
+    mealInfo.innerHTML = '';
+    meals.forEach(meal => {
+        if (meals.length === 1) {
+            const mealInfoDiv = document.createElement("div");
+            mealInfoDiv.innerHTML = `
+        <div class=" card" style="width: 18rem;">
+            <img src="${meal.strMealThumb}">
+            <div class="card-body text-center">
+                <h2>${meal.strMeal}</h2>
+                <h5>Ingredients</h5>
+                <ul>
+                    <li style="list-style:none;padding-right:30px;">${meal.strMeasure1} ${meal.strIngredient1}</li>
+                    <li style="list-style:none;padding-right:30px;">${meal.strMeasure2} ${meal.strIngredient2}</li>
+                    <li style="list-style:none;padding-right:30px;">${meal.strMeasure3} ${meal.strIngredient3}</li>
+                    <li style="list-style:none;padding-right:30px;">${meal.strMeasure4} ${meal.strIngredient4}</li>
+                    <li style="list-style:none;padding-right:30px;">${meal.strMeasure5} ${meal.strIngredient5}</li>
+                    <li style="list-style:none;padding-right:30px;">${meal.strMeasure6} ${meal.strIngredient6}</li>
+                    <li style="list-style:none;padding-right:30px;">${meal.strMeasure7} ${meal.strIngredient7}</li>
+                    <li style="list-style:none;padding-right:30px;">${meal.strMeasure8} ${meal.strIngredient8}</li>
+                    <li style="list-style:none;padding-right:30px;">${meal.strMeasure9} ${meal.strIngredient9}</li>
+                    <li style="list-style:none;padding-right:30px;">${meal.strMeasure10} ${meal.strIngredient10}</li>
+                </ul> 
+            </div>
+        </div>
+        `;
+            mealInfo.appendChild(mealInfoDiv);
+        }
+        else{
+            errorMessage.innerText = "Please click on the meal title";
+        }
+    });
+}
+const displayError = error => {
+    const errorMessage = document.getElementById('error-message');
+    errorMessage.innerText = error;
+}

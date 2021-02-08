@@ -8,53 +8,53 @@
     <title>Hungry Monster</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-        <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
-    <section class="container">
-        <!--Navbar-->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#">Hungry Monster</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="index.html">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">About</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Recipes</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Blog</a>
-                        </li>
-                    </ul>
+    <header>
+        <section class="container">
+            <nav class="navbar navbar-expand-lg navbar-light bg-success">
+                <div class="container-fluid">
+                    <a class="navbar-brand text-white" href="index.html">
+                        <img src="images/logo.png" alt=""><span>Hungry Monster</span>
+                    </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <img src="images/toggler-icon.svg" alt="">
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                        <div class="navbar-nav ms-auto">
+                            <a class="nav-link text-center text-white" aria-current="page" href="index.html">Home</a>
+                            <a class="nav-link text-center text-white" href="#">About</a>
+                            <a class="nav-link text-center text-white" href="#">Recipes</a>
+                            <a class="nav-link text-center text-white" href="#">Blog</a>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </nav>
-    </section>
-    <section>
-        <!--Search area-->
-        <div id="showArea">
-            <div style="width: 500px;" class="container input-group p-5">
-                <input id="search-meal-input" type="text" class="form-control" placeholder="Search for meal">
-                <div class="input-group-append">
-                    <button id="search-button" class="btn btn-danger" type="button">Button</button>
-                </div>
-            </div>
+            </nav>
+        </section>
+    </header>
+    <main>
+        <div class=" container input-group mt-5 mb-3">
+            <input id="search-field" type="text" class="form-control" placeholder="Search your favorite meal"
+                aria-label="Recipient's username" aria-describedby="button-addon2">
+            <button onclick="searchMeal()" class="btn btn-danger" type="button" id="button-addon2">Search</button>
+        </div>
+        <h3 id="error-message" class="text-center text-danger"></h3>
+
+        <!--show meal ingredients-->
+        <div id="meal-info" class="d-flex justify-content-center align-items-center mt-5">
+          
+        </div>
+        <!--Meal Container-->
+        <div id="meal-container" class="justify-content-center align-items-center mt-5">
+            
         </div>
 
-    </section>
-    <section id="meals">
+    </main>
 
-    </section>
     <script src="js/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
