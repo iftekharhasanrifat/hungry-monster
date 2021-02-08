@@ -1,13 +1,19 @@
 const searchMeal = async () => {
     const searchText = document.getElementById('search-field').value;
     const url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${searchText}`;
-    try {
-        const res = await fetch(url);
-        const data = await res.json();
-        displayMeal(data.meals);
+    if(searchText ===""){
+        const errorMessage = document.getElementById('error-message');
+        errorMessage.innerText = "Aren't you hungry! Please enter a meal name.";
     }
-    catch (error) {
-        displayError("Please search your meal properly.");
+    else{
+        try {
+            const res = await fetch(url);
+            const data = await res.json();
+            displayMeal(data.meals);
+        }
+        catch (error) {
+            displayError("Please search your meal properly.");
+        }
     }
 }
 
