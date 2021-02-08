@@ -23,7 +23,7 @@ const displayMeal = meals => {
         mealDiv.innerHTML = `
         <div class="card" style="width: 18rem; border-radius: 15px; overflow: hidden; box-shadow: 10px 10px 30px lightgray;">
             <img src="${meal.strMealThumb}"class="card-img-top" alt="...">
-            <div class="card-body">
+            <div class="card-body" style="cursor: pointer">
                 <h5 class="card-title">${meal.strMeal}</h5>
             </div>
         </div>
