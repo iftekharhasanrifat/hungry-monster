@@ -1,50 +1,61 @@
-.navbar-toggler{
+.navbar-toggler {
     border: none;
 }
-.form-control{
+
+.form-control {
     border-radius: 25px;
 }
-.btn{
+
+.btn {
     border-radius: 1.5rem;
     padding: 9px 20px;
 }
-#meal-container{
+
+#meal-container {
     display: grid;
     gap: 50px;
     justify-content: center;
     align-items: center;
     margin-left: 100px;
 }
-.fa-check-square{
+
+.fa-check-square {
     color: orangered;
 }
-li{
+
+li {
     list-style: none;
 }
-#meal-info .card h2{
-    text-align: center;    
+
+#meal-info .card h2 {
+    text-align: center;
 }
-#meal-info .card h5{
-    margin-left: 25px;    
+
+#meal-info .card h5 {
+    margin-left: 25px;
 }
-@media only screen and (max-width: 600px){
-    #meal-container{
+
+@media only screen and (max-width: 600px) {
+    #meal-container {
         margin-right: 100px;
-        grid-template-columns: repeat(1,1fr);
+        grid-template-columns: repeat(1, 1fr);
     }
 }
-@media only screen and (min-width: 768px){
-    #meal-container{
-        grid-template-columns: repeat(2,1fr);
+
+@media only screen and (min-width: 768px) {
+    #meal-container {
+        grid-template-columns: repeat(2, 1fr);
     }
 }
-@media only screen and (min-width: 992px){
-    #meal-container{
-        grid-template-columns: repeat(3,1fr);
+
+@media only screen and (min-width: 992px) {
+    #meal-container {
+        grid-template-columns: repeat(3, 1fr);
     }
 }
+
 @media only screen and (min-width: 1200px) {
-    #meal-container{
-        grid-template-columns: repeat(4,1fr);
+    #meal-container {
+        grid-template-columns: repeat(4, 1fr);
     }
 }

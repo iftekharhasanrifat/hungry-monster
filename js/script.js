@@ -1,25 +1,31 @@
-const searchMeal = async () => {
+const searchMeal = async() => {
     const searchText = document.getElementById('search-field').value;
     const url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${searchText}`;
+    toggleSpinner();
     if (searchText === "") {
+        toggleSpinner();
         const errorMessage = document.getElementById('error-message');
         errorMessage.innerText = "Aren't you hungry! Please enter a meal name.";
         const mealContainer = document.getElementById("meal-container");
         mealContainer.innerHTML = '';
         const mealInfo = document.getElementById('meal-info');
         mealInfo.innerHTML = '';
-    }
-    else {
+    } else {
         try {
             const res = await fetch(url);
             const data = await res.json();
             displayMeal(data.meals);
-        }
-        catch (error) {
-            displayError("Please search your meal properly.");
+        } catch (error) {
+            displayError("Meal not found");
+            toggleSpinner();
         }
     }
 }
+document.getElementById('search-field').addEventListener('keypress', function(event) {
+    if (event.key == "Enter") {
+        document.getElementById('searchBtn').click();
+    }
+})
 
 const displayMeal = meals => {
     const mealContainer = document.getElementById("meal-container");
@@ -31,7 +37,7 @@ const displayMeal = meals => {
     meals.forEach(meal => {
         const mealDiv = document.createElement("div");
         mealDiv.innerHTML = `
-        <div onclick="getMealById(${meal.idMeal})" class="card" style="width: 18rem; border-radius: 15px; overflow: hidden; box-shadow: 10px 10px 30px lightgray;cursor: pointer;">
+        <div onclick="getMealById(${meal.idMeal})" data-bs-toggle="modal" data-bs-target="#staticBackdrop" class="card" style="width: 18rem; border-radius: 15px; overflow: hidden; box-shadow: 10px 10px 30px lightgray;cursor: pointer;">
             <img src="${meal.strMealThumb}"class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title">${meal.strMeal}</h5>
@@ -40,6 +46,7 @@ const displayMeal = meals => {
         `;
         mealContainer.appendChild(mealDiv);
     });
+    toggleSpinner();
 }
 
 const getMealById = mealId => {
@@ -82,4 +89,9 @@ const displayIngredient = meals => {
 const displayError = error => {
     const errorMessage = document.getElementById('error-message');
     errorMessage.innerText = error;
+}
+
+const toggleSpinner = () => {
+    const spinner = document.getElementById('loading-spinner');
+    spinner.classList.toggle('d-none');
 }
